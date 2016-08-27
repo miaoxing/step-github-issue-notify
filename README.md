@@ -12,7 +12,7 @@ Create github issue when build failed
 ```yaml
 build:
     after-steps:
-        - miaoxing/github-issue-notify
+        - miaoxing/github-issue-notify:
             token: $GITHUB_ISSUE_TOKEN
             repo: username/repo
 ```
