@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-echo 'Build' $WERCKER_RESULT;
-
-if [ $WERCKER_RESULT = 'passed' ] ; then
+if [ "$WERCKER_RESULT" = 'passed' ] ; then
+  success "build passed"
   return 0
+else
+  info "build $WERCKER_RESULT"
 fi
 
 if [ ! -n "$WERCKER_GITHUB_ISSUE_NOTIFY_REPO" ]; then
-  $WERCKER_GITHUB_ISSUE_NOTIFY_REPO="$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY"
+  WERCKER_GITHUB_ISSUE_NOTIFY_REPO="$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY"
 fi
+info "Notify repo: $WERCKER_GITHUB_ISSUE_NOTIFY_REPO"
 
-title='Build failed: '$(git log -1 --pretty=%B)
+title="Build failed: $(git log -1 --pretty=%B)"
 
 assignee=$(git log -1 --pretty=%cn)
 
@@ -27,7 +29,7 @@ body=${body//
 /\\\n}
 
 data="{\"title\": \"$title\",\"body\":\"$body\",\"assignees\":[\"$assignee\"],\"labels\": [\"task\"]}"
-echo $data
+debug "$data"
 
 curl -i -H "Authorization: token $WERCKER_GITHUB_ISSUE_NOTIFY_TOKEN" -d "$data" \
-https://api.github.com/repos/$WERCKER_GITHUB_ISSUE_NOTIFY_REPO/issues
+"https://api.github.com/repos/$WERCKER_GITHUB_ISSUE_NOTIFY_REPO/issues"
