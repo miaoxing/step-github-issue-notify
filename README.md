@@ -23,6 +23,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.3
+
+- Fix shellcheck issues
+
 ## 0.0.1
 
 - Initial release
