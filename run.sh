@@ -3,7 +3,7 @@
 echo 'Build' $WERCKER_RESULT;
 
 if [ $WERCKER_RESULT = 'passed' ] ; then
-  exit
+  return 0
 fi
 
 if [ ! -n "$WERCKER_GITHUB_ISSUE_REPO" ]; then
