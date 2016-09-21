@@ -25,6 +25,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.5
+
+- Fix exit code error, add more debug info
+
 ## 0.0.4
 
 - Add `error_file` parameter

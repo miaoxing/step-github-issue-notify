@@ -4,12 +4,13 @@
 if [ -e "$WERCKER_GITHUB_ISSUE_ERROR_FILE" ]; then
     detail=$(cat "$WERCKER_GITHUB_ISSUE_ERROR_FILE")
 else
+    info "error file \"$WERCKER_GITHUB_ISSUE_ERROR_FILE\" not found"
     detail=""
 fi
 
 if [[ "$detail" = "" && "$WERCKER_RESULT" = "passed" ]]; then
   success "build passed"
-  exit 0
+  return 0
 else
   info "build $WERCKER_RESULT"
 fi
