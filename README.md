@@ -6,6 +6,7 @@ Create github issue when build failed
 
 - `token` - The github personal token to create issues https://github.com/settings/tokens
 - `repo` - The github repository to create issues
+- `title` - The issue title, `%title%` would be replaced to the last git commit message
 - `error_file` - The file contains error message, it will create an issues, if the content is not empty, even the build has passed
 
 # Example
@@ -16,6 +17,7 @@ build:
     - miaoxing/github-issue-notify:
         token: $GITHUB_ISSUE_TOKEN
         repo: username/repo
+        title: Build failed: %title%
         error_file: error.txt
 ```
 
@@ -24,6 +26,10 @@ build:
 The MIT License (MIT)
 
 # Changelog
+
+## 0.0.7
+
+- Add `title` parameter
 
 ## 0.0.6
 

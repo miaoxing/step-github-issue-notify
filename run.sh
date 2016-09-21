@@ -20,8 +20,14 @@ if [ ! -n "$WERCKER_GITHUB_ISSUE_NOTIFY_REPO" ]; then
 fi
 info "notify repo: $WERCKER_GITHUB_ISSUE_NOTIFY_REPO"
 
+# Build issue title
 message=$(git log -1 --pretty=%B)
-title="Build failed: $message"
+if [ -n "$WERCKER_GITHUB_ISSUE_NOTIFY_TITLE" ]; then
+    title=${WERCKER_GITHUB_ISSUE_NOTIFY_TITLE//%title%/$message}
+else
+    title="Build failed: $message"
+fi
+
 assignee=$(git log -1 --pretty=%cn)
 body="Status: $WERCKER_RESULT
 
