@@ -1,8 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if [ "$WERCKER_RESULT" = 'passed' ] ; then
+# Check if error file not empty
+if [ -e "$WERCKER_GITHUB_ISSUE_ERROR_FILE" ]; then
+    detail=$(cat "$WERCKER_GITHUB_ISSUE_ERROR_FILE")
+else
+    detail=""
+fi
+
+if [[ "$detail" = "" && "$WERCKER_RESULT" = "passed" ]]; then
   success "build passed"
-  return 0
+  exit 0
 else
   info "build $WERCKER_RESULT"
 fi
@@ -20,7 +27,21 @@ body="Status: $WERCKER_RESULT
 Author: $assignee
 Message: $title
 
-Failed step: $WERCKER_FAILED_STEP_DISPLAY_NAME - $WERCKER_FAILED_STEP_MESSAGE
+"
+
+if [ "$detail" != "" ]; then
+    body+="Detail:
+\`\`\`
+$detail
+\`\`\`
+"
+fi
+
+if [ "$WERCKER_RESULT" != "passed" ]; then
+    body+="Failed step: $WERCKER_FAILED_STEP_DISPLAY_NAME - $WERCKER_FAILED_STEP_MESSAGE"
+fi
+
+body+="
 
 View the changeset: $WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY@$WERCKER_GIT_COMMIT
 

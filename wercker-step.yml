@@ -12,3 +12,6 @@ properties:
   repo:
     type: string
     required: false
+  error_file:
+    type: string
+    required: false
