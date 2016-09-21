@@ -17,7 +17,7 @@ build:
     - miaoxing/github-issue-notify:
         token: $GITHUB_ISSUE_TOKEN
         repo: username/repo
-        title: Build failed: %title%
+        title: "Build failed: %title%"
         error_file: error.txt
 ```
 
@@ -26,6 +26,10 @@ build:
 The MIT License (MIT)
 
 # Changelog
+
+## 0.0.8
+
+- Use `$WERCKER_GIT_COMMIT` to receive git logs
 
 ## 0.0.7
 

@@ -21,18 +21,18 @@ fi
 info "notify repo: $WERCKER_GITHUB_ISSUE_NOTIFY_REPO"
 
 # Build issue title
-message=$(git log -1 --pretty=%B)
+message=$(git log -1 --pretty=%B "$WERCKER_GIT_COMMIT")
 if [ -n "$WERCKER_GITHUB_ISSUE_NOTIFY_TITLE" ]; then
     title=${WERCKER_GITHUB_ISSUE_NOTIFY_TITLE//%title%/$message}
 else
     title="Build failed: $message"
 fi
 
-assignee=$(git log -1 --pretty=%cn)
+assignee=$(git log -1 --pretty=%cn "$WERCKER_GIT_COMMIT")
 body="Status: $WERCKER_RESULT
 
 Author: $assignee
-Message: $title
+Message: $message
 
 "
 
