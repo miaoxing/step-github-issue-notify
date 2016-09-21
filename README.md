@@ -25,6 +25,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.4
+
+- Add `error_file` parameter
+
 ## 0.0.3
 
 - Fix shellcheck issues
