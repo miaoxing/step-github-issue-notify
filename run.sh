@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Check if error file not empty
-if [ -e "$WERCKER_GITHUB_ISSUE_ERROR_FILE" ]; then
-    detail=$(cat "$WERCKER_GITHUB_ISSUE_ERROR_FILE")
+if [ -e "$WERCKER_GITHUB_ISSUE_NOTIFY_ERROR_FILE" ]; then
+    detail=$(cat "$WERCKER_GITHUB_ISSUE_NOTIFY_ERROR_FILE")
 else
-    info "error file \"$WERCKER_GITHUB_ISSUE_ERROR_FILE\" not found"
+    info "error file \"$WERCKER_GITHUB_ISSUE_NOTIFY_ERROR_FILE\" not found"
     detail=""
 fi
 

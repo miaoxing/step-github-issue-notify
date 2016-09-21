@@ -25,6 +25,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.6
+
+- Fix var typo
+
 ## 0.0.5
 
 - Fix exit code error, add more debug info
