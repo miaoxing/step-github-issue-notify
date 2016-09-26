@@ -27,6 +27,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.9
+
+- Fix JSON format error when data contain tab character
+
 ## 0.0.8
 
 - Use `$WERCKER_GIT_COMMIT` to receive git logs

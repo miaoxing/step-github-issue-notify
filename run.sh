@@ -29,7 +29,7 @@ else
 fi
 
 assignee=$(git log -1 --pretty=%cn "$WERCKER_GIT_COMMIT")
-body="Status: $WERCKER_RESULT
+body="Status: failed
 
 Author: $assignee
 Message: $message
@@ -55,10 +55,11 @@ View the changeset: $WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY@$WERCKER_GIT_COMM
 View the full build log and details: $WERCKER_RUN_URL"
 body=${body//\'/\\\'}
 body=${body//\"/\\\"}
+body=${body//\	/\\\t}
 body=${body//
 /\\\n}
 
-data="{\"title\": \"$title\",\"body\":\"$body\",\"assignees\":[\"$assignee\"],\"labels\": [\"task\"]}"
+data="{\"title\":\"$title\",\"body\":\"$body\",\"assignees\":[\"$assignee\"],\"labels\":[\"task\"]}"
 debug "$data"
 
 curl -i -H "Authorization: token $WERCKER_GITHUB_ISSUE_NOTIFY_TOKEN" -d "$data" \

@@ -1,5 +1,5 @@
 name: github-issue-notify
-version: 0.0.8
+version: 0.0.9
 description: Create github issue if build failed.
 keywords:
   - notification
