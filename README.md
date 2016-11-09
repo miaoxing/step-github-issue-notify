@@ -27,6 +27,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.10
+
+- Fix JSON format error when data contain single quote character
+
 ## 0.0.9
 
 - Fix JSON format error when data contain tab character
