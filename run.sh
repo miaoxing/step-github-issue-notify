@@ -28,7 +28,7 @@ else
     title="Build failed: $message"
 fi
 
-assignee=$(git log -1 --pretty=%cn "$WERCKER_GIT_COMMIT")
+assignee=$(git log -1 --pretty=%an "$WERCKER_GIT_COMMIT")
 body="Status: failed
 
 Author: $assignee
