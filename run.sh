@@ -53,6 +53,7 @@ body+="
 View the changeset: $WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY@$WERCKER_GIT_COMMIT
 
 View the full build log and details: $WERCKER_RUN_URL"
+body=${body//\\/\\\\}
 body=${body//\"/\\\"}
 body=${body//\	/\\\t}
 body=${body//

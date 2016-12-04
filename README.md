@@ -27,6 +27,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.12
+
+- Fix JSON format error when data contain `\` character
+
 ## 0.0.11
 
 - Change assignee from author to committer
