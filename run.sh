@@ -8,7 +8,7 @@ function json_escape {
     body=${body//
 /\\\n}
     # remove ascii color
-    body=`echo "${body}" | perl -pe 's/\e\[?.*?[\@-~]//g'`
+    body=$(echo "${body}" | perl -pe 's/\e\[?.*?[\@-~]//g')
     echo "$body"
 }
 
@@ -66,9 +66,9 @@ View the changeset: $WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY@$WERCKER_GIT_COMM
 
 View the full build log and details: $WERCKER_RUN_URL"
 
-title=`json_escape "${title}"`
-body=`json_escape "${body}"`
-assignee=`json_escape "${assignee}"`
+title=$(json_escape "${title}")
+body=$(json_escape "${body}")
+assignee=$(json_escape "${assignee}")
 
 data="{\"title\":\"$title\",\"body\":\"$body\",\"assignees\":[\"$assignee\"],\"labels\":[\"task\"]}"
 debug "$data"
