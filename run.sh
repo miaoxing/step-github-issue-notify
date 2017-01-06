@@ -1,5 +1,17 @@
 #!/bin/bash
 
+function json_escape {
+    body=$1
+    body=${body//\\/\\\\}
+    body=${body//\"/\\\"}
+    body=${body//\	/\\\t}
+    body=${body//
+/\\\n}
+    # remove ascii color
+    body=`echo "${body}" | perl -pe 's/\e\[?.*?[\@-~]//g'`
+    echo "$body"
+}
+
 # Check if error file not empty
 if [ -e "$WERCKER_GITHUB_ISSUE_NOTIFY_ERROR_FILE" ]; then
     detail=$(cat "$WERCKER_GITHUB_ISSUE_NOTIFY_ERROR_FILE")
@@ -53,11 +65,10 @@ body+="
 View the changeset: $WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY@$WERCKER_GIT_COMMIT
 
 View the full build log and details: $WERCKER_RUN_URL"
-body=${body//\\/\\\\}
-body=${body//\"/\\\"}
-body=${body//\	/\\\t}
-body=${body//
-/\\\n}
+
+title=`json_escape "${title}"`
+body=`json_escape "${body}"`
+assignee=`json_escape "${assignee}"`
 
 data="{\"title\":\"$title\",\"body\":\"$body\",\"assignees\":[\"$assignee\"],\"labels\":[\"task\"]}"
 debug "$data"

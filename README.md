@@ -27,6 +27,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 0.0.13
+
+- Fix JSON format error when data contain ascii color codes
+
 ## 0.0.12
 
 - Fix JSON format error when data contain `\` character
